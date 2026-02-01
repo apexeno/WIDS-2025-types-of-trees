@@ -181,6 +181,14 @@ Repeatedly remove the maximum and place it at the end of the array. Each removal
 
 This gives a sorted list and runs in O(n log n) time.     
 
+### Week 3 : RB trees and AVL trees
+
+
+
+
+
+
+### Week 4 : Tries and suffix tries 
 
 #### Problems  : 
 #### 1.LC 94 
@@ -191,18 +199,3 @@ This gives a sorted list and runs in O(n log n) time.
 #### 6.LC 145 
 #### 7.LC 501 
 
-
-
-
-************(in progress)************
-#### 8.LC 530
-#### 9.LC 700
-#### 10.LC 783
-#### 11.LC 98
-#### 12.LC 102 (medium,hint: does this look like some traversal you already know?)
-#### 13.LC 235 (pretty tough to get the right and efficient idea. Try out examples on paper to get some hints)
-#### 14.LC 1569 (A bonus and a very hard problem, that we expect anybody to do based on week1 + week2 knowledge)
-### Week 3 : RB trees and AVL trees
-### Week 4 : Tries and suffix tries 
-### Week 5 : Fenwick Trees and Segment trees (Some basic applications only) 
-### Week 6 : Treaps (We doubt we will able to cover this due to the time constraint we have, but we will try our best).
