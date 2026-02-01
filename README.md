@@ -485,7 +485,251 @@ _v) Both support search, insert, delete in O(log n)_
 
 
 
-### Week 4 : Tries and suffix tries 
+################################### Week 4 : Tries and suffix tries ###########################################
+
+
+**1. When Keys Are Strings**
+
+i) For unordered keys → hash tables are used
+
+ii) For ordered keys → red-black trees are used
+
+iii) When keys are strings, they have extra structure (prefix, substring)
+
+iv) We want a data structure that exploits this structure
+
+
+_Typical applications:_
+
+i) Web search
+
+ii) Text search (all occurrences of words)
+
+iii) Routing tables (IP addresses)
+
+**2. Trie**
+
+_2.1 Definition of Trie_
+
+Let Σ be the alphabet.
+
+i) A trie is an ordered tree
+
+ii) Each node (except root) stores one character from Σ
+
+iii) Each node has at most |Σ| children, all with distinct labels
+
+iv) A word is represented by a path from root to a leaf
+
+Example:
+
+Words {bear, bile, bid, bent} share prefix b, so they branch only when letters differ.
+
+_2.2 End Marker_
+
+Problem: one word may be a prefix of another.
+
+i) Add a special end marker `$`
+
+ii) `$` marks the end of a valid word
+
+Example:
+
+Words `{act, actor}`
+
+i) `act$`
+
+ii) `actor$`
+
+This distinguishes `act` from `actor`.
+
+_2.3 Time and Space Complexity_
+
+i) Space complexity = O(W)
+    where W = total length of all words
+
+ii) Search, insert, delete time = O(|Σ| · m)
+    where m = length of the word
+
+iii) Reason: at each node, we may scan all children to find next letter
+
+**3. Applications of Trie**
+
+_3.1 Word Search in Text_
+
+i) Store all words of a text in a trie
+
+ii) Each leaf stores:
+    a) first occurrence position, or
+    b) list of all occurrence positions
+
+This allows fast word lookup in large text.
+
+_3.2 Routing Table_
+
+i) IP addresses are stored as strings in a trie
+
+ii) Packet IP is matched along the trie
+
+iii) Longest prefix match determines the outgoing link
+
+This is why tries are used in routers.
+
+**4. Compressed Trie**
+
+_4.1 Definition_
+
+_A compressed trie is obtained by compressing chains of single-child nodes._
+
+i) If a non-root node has only one child and no end marker, compress it
+
+ii) Nodes store substrings instead of single characters
+
+Example:
+
+Words `{act, actor}` become:
+
+edge labeled `"act"`
+
+branch to `"or"` and `$`
+
+_4.2 Number of Nodes_
+
+i) Each leaf corresponds to one word
+
+ii) Every internal node has at least two children
+
+iii) Number of internal nodes < number of leaves
+
+ Total nodes = O(number of words)
+
+Conclusion:
+
+i) Compressed tries save space
+
+ii) Especially useful when words share long prefixes
+
+_4.3 Practical Optimization_
+
+i) Do not store substrings explicitly
+
+ii) Store only `(start index, length)` pointing to original text
+
+This saves memory for large texts.
+
+**5. Suffix Tree**
+
+_5.1 Motivation_
+
+Given:
+
+i) A mostly fixed text T
+
+ii) Many pattern searches
+
+Goal:
+
+i) Preprocess T once
+
+ii) Answer searches quickly
+
+_5.2 Definition of Suffix Tree_
+
+i) A suffix tree is a trie built on all suffixes of a text T
+
+ii) Each suffix ends with a unique terminal symbol $
+
+Example:
+
+Text = `"abaa"`
+
+Suffixes:
+
+i) `abaa$`
+
+ii) `baa$`
+
+iii) `aa$`
+
+iv) `a$`
+
+_5.3 Uses of Suffix Tree_
+
+i) Check if pattern P occurs in T
+
+ii) Check if P is a suffix of T
+
+iii) Count number of occurrences of P
+
+iv) Find longest repeated substring
+
+Key idea:
+
+i) Deepest node with ≥ 2 children gives longest repeated substring
+
+**6. Suffix Links**
+
+_6.1 Definition_
+
+i) Each node represents a string
+
+ii) A suffix link connects `xα → α`
+
+This allows fast traversal between related suffixes.
+
+_6.2 Use of Suffix Links_
+
+Used to solve advanced problems like:
+
+i) Longest common substring of T and P
+
+Procedure:
+
+i) Walk P down the suffix tree
+
+ii) On mismatch, follow suffix links
+
+iii) Track maximum depth reached
+
+**7. Constructing Suffix Tree**
+
+_7.1 Incremental Construction_
+
+i) Assume suffix tree for `T[0 : i−1]` is built
+
+ii) Add character `T[i]` to all suffixes
+
+iii) Use suffix links to move efficiently
+
+_7.2 Complexity_
+
+i) With suffix links → O(n²) construction
+
+ii) Without suffix links → worse than O(n²)
+
+_7.3 Ukkonen’s Algorithm_
+
+i) Advanced algorithm
+
+ii) Builds suffix tree in O(n) time
+
+iii) Uses clever implementation tricks
+
+iv) Not covered in detail in this course
+
+**8. Things to Remember **
+
+_i) Trie exploits prefix structure of strings_
+
+_ii) End marker `$` is required for prefix words_
+
+_iii) Compressed trie reduces space drastically_
+
+_iv) Suffix tree stores all suffixes of text_
+
+_v) Suffix trees allow very fast pattern queries_
+
+vi) Suffix links speed up construction and queries
 
 
 
