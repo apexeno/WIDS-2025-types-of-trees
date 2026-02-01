@@ -740,10 +740,16 @@ vi) Suffix links speed up construction and queries
 
 
 
-
+following are some of the problems i did during the project;
+to be honest this project was a little bit tough for me as cs101 was kinda prerequisite for this but i dint knew;
+but mentors rlly helped me a lot by clarifying my doubts and giving me some easier prblms that also i have listed below;
 
 
 #### Problems  : 
+#### 0.1 fizzbuzz
+#### 0.2 parity
+#### 0.3 pandidgital
+#### 
 #### 1.LC 94 
 #### 2.LC 101 
 #### 3.LC 108 
